@@ -62,8 +62,8 @@ class Notification(BaseModel):
 
     trigger_name = models.CharField(db_index=True, max_length=50)
 
-    target_user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='notifications')
-    trigger_user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='notifications_sent',
+    target_user = models.ForeignKey(settings.TRANSMISSIONS_USER_MODEL or settings.AUTH_USER_MODEL, related_name='notifications')
+    trigger_user = models.ForeignKey(settings.TRANSMISSIONS_USER_MODEL or settings.AUTH_USER_MODEL, related_name='notifications_sent',
                                      null=True, default=None)
 
     content_type = models.ForeignKey(ContentType, null=True, blank=True)
